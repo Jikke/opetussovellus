@@ -1,0 +1,2 @@
+# opetussovellus
+Tietokantasovellus kurssin projekti
