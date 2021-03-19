@@ -1,5 +1,5 @@
 # Opetussovellus
-Tietokantasovellus-kurssin projekti. //
+Tietokantasovellus-kurssin projekti. \
 Tavoitteena on luoda nettisivu, johon voi luoda opetussisältöä tehtävineen. Näitä kursseja muut käyttäjät voivat lukea ja suorittaa.
 
 ## Käyttäjäroolit
