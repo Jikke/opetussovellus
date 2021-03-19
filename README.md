@@ -1,10 +1,10 @@
 # Opetussovellus
-Tietokantasovellus-kurssin projekti. 
+Tietokantasovellus-kurssin projekti. /
 Tavoitteena on luoda nettisivu, johon voi luoda opetussisältöä tehtävineen. Näitä kursseja muut käyttäjät voivat lukea ja suorittaa.
 
 ## Käyttäjäroolit
 
-Käyttäjä pystyy luomaan tilin ja kirjautumaan joko opettajan tai oppilaan käyttöoikeuksin.
+Käyttäjä pystyy luomaan tilin ja kirjautumaan joko _opettajan_ tai _oppilaan_ käyttöoikeuksin.
 
 ### Opettaja pystyy
   -luomaan/muokkaamaan/poistamaan kursseja
