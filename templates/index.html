@@ -1,0 +1,11 @@
+Opetussovellus, TSOHA 4. periodi 2021
+<hr>
+{% if session.username == null %}
+Et ole kirjautunut sisään.
+<hr>
+<a href="/login">Kirjaudu sisään</a>
+{% else %}
+<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<hr>
+<a href="/logout">Kirjaudu ulos</a>
+{% endif %}
