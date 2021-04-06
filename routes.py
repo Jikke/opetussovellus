@@ -16,9 +16,11 @@ def login():
     if request.method == "POST":    
         username = request.form["username"]
         password = request.form["password"]
-        # TODO: check username and password
-        session["username"] = username
-        return redirect("/")
+        if users.login(username, password):
+            session["username"] = username
+            return redirect("/")
+        else:
+            return render_template("error.html",message="Väärä tunnus tai salasana")
 
 @app.route("/logout")
 def logout():
@@ -33,8 +35,8 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         role = request.form["role"]
-        print(username+', '+password+', '+role)
         if users.register(username,password,role):
+            session["username"] = username
             return redirect("/")
         else:
             return render_template("error.html",message="Rekisteröinti ei onnistunut")
