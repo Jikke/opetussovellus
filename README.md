@@ -18,7 +18,7 @@ Tällä hetkellä toteutuvat toiminnot on merkitty rivin alkuun täpällä.
   - :heavy_check_mark: liittymään kurssille
   - :heavy_check_mark: lukemaan kurssille lisättyä tekstisisältöä
   - suorittamaan kurssilta löytyviä opettajan lisäämiä tehtäviä
-  - [ ] tarkastelemaan omia kurssisuorituksia
+  - tarkastelemaan omia kurssisuorituksia
 
 ## Jatkokehitysideoita
 Käytettävissä olevan ajan puitteissa sivulle tullaan lisäämään mahdollisesti joitain seuraavista
