@@ -1,0 +1,18 @@
+Opetussovellus, TSOHA 4. periodi 2021
+<p>
+Kurssin luomissivu
+<hr>
+<form action="/create" method="POST">
+Otsikko: <br>
+<textarea name="topic" rows="1" cols="30"></textarea>
+<br>
+Sisältö: <br>
+<textarea name="content" rows="3" cols="40"></textarea>
+<br>
+<input type="submit" value="Luo kurssi">
+</form>
+<hr>
+<a href="/">Etusivu</a>
+<p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
+<p>Tittelisi on <i>opettaja</i>.</p>
+<a href="/logout">Kirjaudu ulos</a>

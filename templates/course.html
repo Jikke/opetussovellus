@@ -1,0 +1,27 @@
+Opetussovellus, TSOHA 4. periodi 2021
+<p>
+Kurssin <i>{{ topic }}</i> sivu
+<hr>
+{% if session.role == 1 or student == True %}
+<i>Sisältö:</i>
+<p> 
+{{ content }}
+
+{% else %}
+Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.
+<p>
+{% endif %}    
+{% if session.role == 2 and student == False %}   
+<form action="/join" method="POST">
+<input type="hidden" value="{{ topic }}" name="topic" />
+<input type="submit" value="Liity kurssille">
+</form>
+<p>
+{% endif %} 
+<hr>    
+<a href="/">Etusivu</a>
+<p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
+<p>Tittelisi on {% if session.role == 1 %}<i>opettaja</i>.</p>
+                {% elif session.role == 2 %}<i>oppilas</i>.</p>
+                {% endif %}
+<a href="/logout">Kirjaudu ulos</a>

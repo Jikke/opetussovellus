@@ -1,9 +1,37 @@
 Opetussovellus, TSOHA 4. periodi 2021
+<p>
+Etusivu
 <hr>
 {% if session.user_id %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
-<hr>
-<a href="/logout">Kirjaudu ulos</a>
+    {% if session.role == 1 %}
+    <a href="/new">Luo kurssi</a>
+    <p>
+        {% if count > 0 %}
+        Luomasi kurssit:
+        {% else %}
+        Et ole luonut vielä kursseja.
+        {% endif %}
+    {% elif session.role == 2 %}
+        {% if count > 0 %}
+        Saatavilla olevat kurssit:
+        {% else %}
+        Kursseja ei ole saatavilla.
+        {% endif %}
+    {% endif %}
+    <p>
+        {% for course in courses %}
+        <p>
+        <i>Kurssi:</i> <a href="/course/{{ course[0] }}">{{ course[0] }}</a>
+        <p>
+        <i>Luotu:</i> {{ course[1].strftime("%d.%m.%Y // %H:%M:%S") }}
+        {% endfor %}
+    
+    <hr>
+    <p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
+    <p>Tittelisi on {% if session.role == 1 %}<i>opettaja</i>.</p>
+                    {% elif session.role == 2 %}<i>oppilas</i>.</p>
+                    {% endif %}
+    <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 Et ole kirjautunut sisään.
 <hr>

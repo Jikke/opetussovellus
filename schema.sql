@@ -14,3 +14,9 @@ CREATE TABLE courses (
     created TIMESTAMP,
     visible INTEGER
 );
+CREATE TABLE participants (
+    id SERIAL PRIMARY KEY,
+    course_id INTEGER REFERENCES courses,
+    student_id INTEGER REFERENCES users,
+    visible INTEGER
+);
