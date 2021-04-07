@@ -6,17 +6,17 @@ Nettisivun tämänhetkinen tilanne: [tsoha-opetussovellus](https://tsoha-opetuss
 ## Käyttäjäroolit
 
 Käyttäjä pystyy luomaan tilin ja kirjautumaan joko _opettajan_ tai _oppilaan_ käyttöoikeuksin. \
-Tällä hetkellä toteutuvat toiminnot on merkitty rivin alkuun täpällä.
+Tällä hetkellä toteutuvat toiminnot on merkitty rivin loppuun täpällä.
 
 ### Opettaja pystyy
-  - :white_check_mark: **luomaan**/muokkaamaan/poistamaan kursseja
-  - :heavy_check_mark: lisäämään kurssille tekstisisältöä
+  - **luomaan**/muokkaamaan/poistamaan kursseja :white_check_mark:
+  - lisäämään kurssille tekstisisältöä :heavy_check_mark:
   - lisäämään automaattisesti tarkastettavia monivalinta- ja tekstikenttätehtäviä
   - tarkastelemaan kurssille ilmoittautuneita oppilaita ja heidän kurssimenestystään
 
 ### Oppilas pystyy
-  - :heavy_check_mark: liittymään kurssille
-  - :heavy_check_mark: lukemaan kurssille lisättyä tekstisisältöä
+  - liittymään kurssille :heavy_check_mark:
+  - lukemaan kurssille lisättyä tekstisisältöä :heavy_check_mark:
   - suorittamaan kurssilta löytyviä opettajan lisäämiä tehtäviä
   - tarkastelemaan omia kurssisuorituksia
 
