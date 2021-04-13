@@ -11,7 +11,6 @@ def index():
         if users.user_role() == 1:
             list = courses.get_owned()
         else:
-            print("user_role != 1")
             list = courses.get_list()
         return render_template("index.html", count=len(list), courses=list)
     return render_template("index.html")
@@ -66,17 +65,35 @@ def course(topic):
         student_id = users.user_id()
         student = participants.student(course_id, student_id)
         content = courses.get(topic)[2]
-        return render_template("course.html",topic=topic,content=content,student=student)
+        return render_template("course.html",topic=topic,content=content,student=student,course_id=course_id)
     else:
         return render_template("error.html",message="Kurssia ei löytynyt.")
 
 @app.route("/join", methods=["POST"])
 def join():
     topic = request.form["topic"]
-    print(topic)
     if courses.join(topic):
         return redirect("/course/"+topic)
     else:
         return render_template("error.html",message="Kurssille liittyminen ei onnistunut.")
 
+@app.route("/delete", methods=["POST"])
+def delete():
+    topic = request.form["topic"]
+    if courses.delete(topic):
+        return redirect("/")
+    else:
+        return render_template("error.html",message="Kurssin postaminen ei onnistunut")
+
+@app.route("/modify", methods=["POST"])
+def modify():
+    topic = request.form["topic"]
+    content = request.form["content"]
+    course_id = request.form["course_id"]
+    print("Modify, ennen courses.modify() -metodia")
+    if courses.modify(course_id, topic, content):
+        print("Modify, courses.modify() -metodi onnistui")
+        return redirect("/course/"+topic)
+    else:
+        return render_template("error.html",message="Kurssin muokkaaminen ei onnistunut")
 

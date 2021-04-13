@@ -17,7 +17,28 @@ Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.
 <input type="submit" value="Liity kurssille">
 </form>
 <p>
-{% endif %} 
+{% endif %}
+{% if session.role == 1 %}
+<p> 
+<form action="/modify" method="POST">    
+<i>Muokkaa kurssia:</i>
+<p> 
+Otsikko: <br>
+<textarea name="topic" rows="1" cols="30">{{ topic }}</textarea>
+<br>
+Sisältö: <br>
+<textarea name="content" rows="3" cols="40">{{ content }}</textarea>
+<br>
+<input type="hidden" value="{{ course_id }}" name="course_id" />
+<input type="submit" value="Muokkaa">
+</form>
+<p> 
+<form action="/delete" method="POST">
+<input type="hidden" value="{{ topic }}" name="topic" />
+<input type="submit" value="Poista">
+</form>
+<p> 
+{% endif %}
 <hr>    
 <a href="/">Etusivu</a>
 <p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
