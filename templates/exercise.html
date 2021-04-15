@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
+{% if session.role == 2 %}
+    {% if count > 0 %}
+        <form action="/course/{{ topic }}/exercise" method="POST">
+        {% for exercise in exercises %}
+        
+        {{ exercise[2] }}<br>
+            {% if exercise[4] != "None" %}
+                {% set options = exercise[4].split(",") %}
+                {% for option in options %}
+                <input type="radio" name="{{ option }}" value="{{ option }}"> {{ option }}<br>
+                {% endfor %}
+            {% else %}
+            Vastaus: <input type="text" name="{{ exercise[0] }}"><br>
+            {% endif %}
+        <br>    
+        {% endfor %}
+        <input type="submit" value="Palauta">
+        </form>
+    {% else %}
+    Kurssille ei ole luotu kysymyksiä.
+    {% endif %}     
+{% elif session.role == 1 %}
+soot ope
+{% endif %}
+{% endblock %}

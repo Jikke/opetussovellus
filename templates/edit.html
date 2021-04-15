@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
+{% if session.role == 1 %}
+
+        {% if mchoice == "1" or mchoice == "0" %}
+        <form action="/course/{{ topic }}/exercise/edit/{{ mchoice }}" method="POST">  
+        <p> 
+        Kysymys: <br>
+        <textarea name="question" rows="1" cols="30"></textarea>
+        <br>
+            {% if mchoice == "1" %}    
+            Vastaustyyppi: Monivalinta<br>
+            Syötä vastausvaihtoehdot putkeen pilkulla (,) erotettuna.<br>
+            <textarea name="options" rows="2" cols="40"></textarea><br>
+            Syötä oikea vastaus: <br>
+            <textarea name="answer" rows="1" cols="5"></textarea><br>
+            Vaihda tehtävätyyppi:
+            <a href="/course/{{ topic }}/exercise/edit/0">Aukontäyttö</a><br>
+            {% else %}
+            Vastaustyyppi: Aukontäyttö<br>
+            Syötä oikea vastaus: <br>
+            <textarea name="answer" rows="1" cols="30"></textarea><br>
+            <input type="hidden" name="options" value="None" />
+            Vaihda tehtävätyyppi:
+            <a href="/course/{{ topic }}/exercise/edit/1">Monivalinta</a><br>  
+            {% endif %}
+        <input type="submit" value="Lisää">  
+        </form>
+        {% else %}
+        <a href="/course/{{ topic }}/exercise/edit/0">Luo uusi kysymys</a>
+        {% endif %}
+
+{% else %}
+Tililläsi ei ole oikeutta nähdä tätä sivua.    
+{% endif %}
+{% endblock %}

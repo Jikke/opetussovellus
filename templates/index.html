@@ -1,13 +1,11 @@
-Opetussovellus, TSOHA 4. periodi 2021
-<p>
-Etusivu
-<hr>
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
 {% if session.user_id %}
     {% if session.role == 1 %}
-    <a href="/new">Luo kurssi</a>
-    <p>
+    <a href="/new">Luo kurssi</a><br>
         {% if count > 0 %}
-        Luomasi kurssit:
+        Luomasi kurssit:<br>
         {% else %}
         Et ole luonut vielä kursseja.
         {% endif %}
@@ -18,22 +16,13 @@ Etusivu
         Kursseja ei ole saatavilla.
         {% endif %}
     {% endif %}
-    <p>
         {% for course in courses %}
-        <p>
-        <i>Kurssi:</i> <a href="/course/{{ course[0] }}">{{ course[0] }}</a>
-        <p>
-        <i>Luotu:</i> {{ course[1].strftime("%d.%m.%Y // %H:%M:%S") }}
+        <br>
+        <i>Kurssi:</i> <a href="/course/{{ course[0] }}">{{ course[0] }}</a><br>
+        <i>Muokattu:</i> {{ course[1].strftime("%d.%m.%Y // %H:%M:%S") }}</p2><br>
         {% endfor %}
-    
-    <hr>
-    <p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
-    <p>Tittelisi on {% if session.role == 1 %}<i>opettaja</i>.</p>
-                    {% elif session.role == 2 %}<i>oppilas</i>.</p>
-                    {% endif %}
-    <a href="/logout">Kirjaudu ulos</a>
 {% else %}
-Et ole kirjautunut sisään.
-<hr>
-<a href="/login">Kirjaudu sisään</a>
+<h3>Tervetuloa!</h3>
+Aloita kirjautumalla sisään yläpalkin valikosta.
 {% endif %}
+{% endblock %}

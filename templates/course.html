@@ -1,11 +1,14 @@
-Opetussovellus, TSOHA 4. periodi 2021
-<p>
-Kurssin <i>{{ topic }}</i> sivu
-<hr>
-{% if session.role == 1 or student == True %}
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
+{% if session.role == 1 or student %}
 <i>Sisältö:</i>
 <p> 
 {{ content }}
+<p>
+<a href="/course/{{ topic }}/exercise">Kyselyyn(älä käytä)</a>.
+<p>
+<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}">Lisää kysymys</a>
 
 {% else %}
 Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.
@@ -29,20 +32,14 @@ Otsikko: <br>
 Sisältö: <br>
 <textarea name="content" rows="3" cols="40">{{ content }}</textarea>
 <br>
-<input type="hidden" value="{{ course_id }}" name="course_id" />
+<input type="hidden" name="topic" value="{{ topic }}" />
+<input type="hidden" name="course_id" value="{{ course_id }}" />
 <input type="submit" value="Muokkaa">
 </form>
-<p> 
 <form action="/delete" method="POST">
 <input type="hidden" value="{{ topic }}" name="topic" />
 <input type="submit" value="Poista">
 </form>
 <p> 
 {% endif %}
-<hr>    
-<a href="/">Etusivu</a>
-<p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
-<p>Tittelisi on {% if session.role == 1 %}<i>opettaja</i>.</p>
-                {% elif session.role == 2 %}<i>oppilas</i>.</p>
-                {% endif %}
-<a href="/logout">Kirjaudu ulos</a>
+{% endblock %}

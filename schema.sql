@@ -11,12 +11,20 @@ CREATE TABLE courses (
     topic TEXT UNIQUE,
     content TEXT,
     owner_id INTEGER REFERENCES users,
-    created TIMESTAMP,
+    modified TIMESTAMP,
     visible INTEGER
 );
 CREATE TABLE participants (
     id SERIAL PRIMARY KEY,
     course_id INTEGER REFERENCES courses,
     student_id INTEGER REFERENCES users,
+    visible INTEGER
+);
+CREATE TABLE exercises (
+    id SERIAL PRIMARY KEY,
+    course_id INTEGER REFERENCES courses,
+    question TEXT,
+    answer TEXT,
+    options TEXT, --format: "option1,option2,option3"
     visible INTEGER
 );

@@ -1,7 +1,6 @@
-Opetussovellus, TSOHA 4. periodi 2021
-<p>
-Kirjautumissivu
-<hr>
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
 <form action="/login" method="POST">
 <p>Tunnus:<br>
 <input type="text" name="username"></p>
@@ -9,7 +8,5 @@ Kirjautumissivu
 <input type="password" name="password"></p>
 <input type="submit" value="Kirjaudu">
 </form>
-<hr>
 Luo uusi tunnus <a href="/register">tästä</a>.
-<p>
-<a href="/">Etusivu</a>
+{% endblock %}
