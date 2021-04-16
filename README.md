@@ -9,19 +9,19 @@ Käyttäjä pystyy luomaan tilin ja kirjautumaan joko _opettajan_ tai _oppilaan_
 Tällä hetkellä toteutuvat toiminnot on merkitty rivin loppuun täpällä.
 
 ### Opettaja pystyy
-  - **luomaan**/muokkaamaan/poistamaan kursseja :white_check_mark:
+  - luomaan/muokkaamaan/poistamaan kursseja :heavy_check_mark:
   - lisäämään kurssille tekstisisältöä :heavy_check_mark:
-  - lisäämään automaattisesti tarkastettavia monivalinta- ja tekstikenttätehtäviä
+  - lisäämään automaattisesti tarkastettavia monivalinta- ja tekstikenttätehtäviä :heavy_check_mark:
   - tarkastelemaan kurssille ilmoittautuneita oppilaita ja heidän kurssimenestystään
 
 ### Oppilas pystyy
   - liittymään kurssille :heavy_check_mark:
   - lukemaan kurssille lisättyä tekstisisältöä :heavy_check_mark:
-  - suorittamaan kurssilta löytyviä opettajan lisäämiä tehtäviä
+  - suorittamaan kurssilta löytyviä opettajan lisäämiä tehtäviä :heavy_check_mark:
   - tarkastelemaan omia kurssisuorituksia
 
 ## Jatkokehitysideoita
 Käytettävissä olevan ajan puitteissa sivulle tullaan lisäämään mahdollisesti joitain seuraavista
   - kuvien lisäys oppimateriaaleihin
   - palautteenantomahdollisuus kursseista
-  - eloisampi ulkoasu sivustolle
+  - eloisampi ulkoasu sivustolle :white_check_mark:
