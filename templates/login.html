@@ -2,11 +2,17 @@
 {% block title %}Kirjautuminen{% endblock %}
 {% block content %}
 <form action="/login" method="POST">
-<p>Tunnus:<br>
-<input type="text" name="username"></p>
-<p>Salasana:<br>
-<input type="password" name="password"></p>
-<input type="submit" value="Kirjaudu">
+    <div class="form-group col-6">
+        <label for="username">Tunnus</label>
+        <input type="text" name="username" class="form-control">
+    </div>
+    <div class="form-group col-6">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control">
+    </div>
+    <div class="form-group col-6">
+        <input type="submit" value="Kirjaudu" class="btn btn-primary">
+    </div>
 </form>
 Luo uusi tunnus <a href="/register">tästä</a>.
 {% endblock %}

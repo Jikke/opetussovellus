@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Kirjautuminen{% endblock %}
+{% block title %}Kysely - {{ topic }}{% endblock %}
 {% block content %}
 {% if session.role == 2 %}
     {% if count > 0 %}
@@ -10,7 +10,7 @@
             {% if exercise[4] != "None" %}
                 {% set options = exercise[4].split(",") %}
                 {% for option in options %}
-                <input type="radio" name="{{ option }}" value="{{ option }}"> {{ option }}<br>
+                <input type="radio" name="{{ exercise[0] }}" value="{{ option }}"> {{ option }}<br>
                 {% endfor %}
             {% else %}
             Vastaus: <input type="text" name="{{ exercise[0] }}"><br>
@@ -23,6 +23,24 @@
     Kurssille ei ole luotu kysymyksiä.
     {% endif %}     
 {% elif session.role == 1 %}
-soot ope
+<u>Luomasi kysymykset ja niiden mahdolliset vastausvaihtoehdot listattuna:</u><br><br>
+{% for exercise in exercises %}
+    {{ exercise[2] }}<br>
+        {% if exercise[4] != "None" %}
+        <ul>
+            {% set options = exercise[4].split(",") %}
+            {% for option in options %}
+                {% if option == exercise[3] %}
+                <li>{{ option }} <- Oikea vastaus</li> 
+                {% else %}
+                <li>{{ option }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>    
+        {% else %}
+        <br>
+        {% endif %}
+    {% endfor %}
 {% endif %}
+<a href="/course/{{ topic }}">Palaa</a><br>
 {% endblock %}

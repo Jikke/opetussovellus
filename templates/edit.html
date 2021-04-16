@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Kirjautuminen{% endblock %}
+{% block title %}Muokkaa - {{ topic }}{% endblock %}
 {% block content %}
 {% if session.role == 1 %}
 
@@ -34,4 +34,5 @@
 {% else %}
 Tililläsi ei ole oikeutta nähdä tätä sivua.    
 {% endif %}
+<a href="/course/{{ topic }}">Palaa</a><br>
 {% endblock %}

@@ -1,37 +1,31 @@
 {% extends "layout.html" %}
-{% block title %}Kirjautuminen{% endblock %}
+{% block title %}Kurssi - {{ topic }}{% endblock %}
 {% block content %}
 {% if session.role == 1 or student %}
-<i>Sisältö:</i>
-<p> 
-{{ content }}
-<p>
-<a href="/course/{{ topic }}/exercise">Kyselyyn(älä käytä)</a>.
-<p>
-<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}">Lisää kysymys</a>
-
+<h5>{{ topic }}</h5><br>
+{{ content }}<br>
+<br>
+    {% if previous != None %}
+    Parhaimmat pisteesi kussilta: {{ previous[3] }} / {{ previous[4] }}<br>
+    {% endif %}
+<a href="/course/{{ topic }}/exercise">Kyselyyn</a><br>
 {% else %}
-Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.
-<p>
+Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.<br>
 {% endif %}    
 {% if session.role == 2 and student == False %}   
 <form action="/join" method="POST">
 <input type="hidden" value="{{ topic }}" name="topic" />
 <input type="submit" value="Liity kurssille">
-</form>
-<p>
+</form><br>
 {% endif %}
 {% if session.role == 1 %}
-<p> 
+<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}">Lisää kysymys</a><br> 
 <form action="/modify" method="POST">    
-<i>Muokkaa kurssia:</i>
-<p> 
+<i>Muokkaa kurssia:</i><br>
 Otsikko: <br>
-<textarea name="topic" rows="1" cols="30">{{ topic }}</textarea>
-<br>
+<textarea name="topic" rows="1" cols="30">{{ topic }}</textarea><br>
 Sisältö: <br>
-<textarea name="content" rows="3" cols="40">{{ content }}</textarea>
-<br>
+<textarea name="content" rows="3" cols="40">{{ content }}</textarea><br>
 <input type="hidden" name="topic" value="{{ topic }}" />
 <input type="hidden" name="course_id" value="{{ course_id }}" />
 <input type="submit" value="Muokkaa">
@@ -39,7 +33,6 @@ Sisältö: <br>
 <form action="/delete" method="POST">
 <input type="hidden" value="{{ topic }}" name="topic" />
 <input type="submit" value="Poista">
-</form>
-<p> 
+</form><br>
 {% endif %}
 {% endblock %}

@@ -1,9 +1,7 @@
-Opetussovellus, TSOHA 4. periodi 2021
-<p>
-Virhesivu
-<hr>
-Jotain meni pieleen..
-<p>
-Virheviesti: {{ message }}
-<hr>
-<a href="/">Etusivu</a>
+{% extends "layout.html" %}
+{% block title %}Virhe{% endblock %}
+{% block content %}
+Jotain meni pieleen..<br>
+Virheviesti: {{ message }}<br>
+<a href={{ url }}>Palaa</a><br>
+{% endblock %}

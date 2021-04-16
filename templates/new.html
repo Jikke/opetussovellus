@@ -1,7 +1,6 @@
-Opetussovellus, TSOHA 4. periodi 2021
-<p>
-Kurssin luomissivu
-<hr>
+{% extends "layout.html" %}
+{% block title %}Luo kurssi{% endblock %}
+{% block content %}
 <form action="/new" method="POST">
 Otsikko: <br>
 <textarea name="topic" placeholder="Uniikki otsikko" rows="1" cols="30"></textarea>
@@ -11,8 +10,4 @@ Sisältö: <br>
 <br>
 <input type="submit" value="Luo kurssi">
 </form>
-<hr>
-<a href="/">Etusivu</a>
-<p>Olet kirjautuneena käyttäjätunnuksella <i>{{ session.username }}</i>.</p>
-<p>Tittelisi on <i>opettaja</i>.</p>
-<a href="/logout">Kirjaudu ulos</a>
+{% endblock %}

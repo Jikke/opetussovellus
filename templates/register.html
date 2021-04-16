@@ -1,20 +1,23 @@
-Opetussovellus, TSOHA 4. periodi 2021
-<p>
-Rekistöröitymissivu
-<hr>
+{% extends "layout.html" %}
+{% block title %}Rekistöröityminen{% endblock %}
+{% block content %}
 <form action="/register" method="POST">
-Uuden tunnuksen luonti:
-<p>
-Tunnus: <input type="text" name="username">
-<p>
-Salasana: <input type="password" name="password">
-<p>
-Rooli:  
-<p>
-<input type="radio" name="role" value="1"> Opettaja
-<input type="radio" name="role" value="2"> Oppilas 
-<p>    
-<input type="submit" value="Luo tunnus">
+<h5>Rekistöröidy:</h5>
+<div class="form-group col-6">
+    <label for="username">Tunnus</label>
+    <input type="text" name="username" class="form-control">
+</div>
+<div class="form-group col-6">
+    <label for="password">Password</label>
+    <input type="password" name="password" class="form-control">
+</div>
+<div class="form-group col-6">
+    <label for="role">Rooli</label><br>
+    <input type="radio" name="role" value="1"> Opettaja
+    <input type="radio" name="role" value="2"> Oppilas
+</div> 
+<div class="form-group col-6">
+    <input type="submit" value="Luo tunnus" class="btn btn-primary">
+</div>
 </form>
-<hr>
-<a href="/">Etusivu</a>
+{% endblock %}
