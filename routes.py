@@ -132,7 +132,7 @@ def exercise(topic):
             return redirect("/course/"+topic)
 
     else:
-        return render_template("error.html",message="Kyselyä ei löytynyt!",url="/course"+topic)
+        return render_template("error.html",message="Kyselyä ei löytynyt!",url="/course/"+topic)
 
 
 @app.route("/course/<topic>/exercise/edit/<mchoice>", methods=["GET", "POST"])
@@ -148,7 +148,7 @@ def edit(topic, mchoice):
             return render_template("error.html",message="Osa kentistä jätettiin tyhjiksi.", url="/course/"+topic)
         options = request.form["options"]
         print(options)
-        if options != None:
+        if options != "None":
             optionlist = options.split(",")
             if len(optionlist) > 1:
                 for option in optionlist:
