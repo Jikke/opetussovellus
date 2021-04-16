@@ -55,6 +55,8 @@ def new():
     if request.method == "POST":
         topic = request.form["topic"]
         content = request.form["content"]
+        if topic == "" or content == "":
+            return render_template("error.html",message="Syötit tyhjän kurssinimen tai sisällön", url="/")
         if courses.create(topic, content):
             return redirect("/")
         else:
@@ -64,12 +66,11 @@ def new():
 @app.route("/course/<topic>")
 def course(topic):
     if courses.get(topic) != None:
-        course_id = courses.get(topic)[0]
-        content = courses.get(topic)[2]
+        course = courses.get(topic)
         student_id = users.user_id()
-        student = performance.student(course_id, student_id)
-        previous = performance.get(course_id, student_id)
-        return render_template("course.html",topic=topic,course_id=course_id,content=content,student=student,mchoice=0,previous=previous)
+        student = performance.student(course[0], student_id)
+        previous = performance.get(course[0], student_id)
+        return render_template("course.html",topic=topic,course=course,student=student,mchoice=0,previous=previous)
     else:
         return render_template("error.html",message="Kurssia ei löytynyt.", url="/")
 
@@ -77,8 +78,8 @@ def course(topic):
 def join():
     topic = request.form["topic"]
     course = courses.get(topic)
-    student_id = users.user_id
-    maximum = performance.getmax(course_id)
+    student_id = users.user_id()
+    maximum = courses.getmax(course[0])
     if performance.join(course[0], student_id, 0, maximum):
         return redirect("/course/"+topic)
     else:
@@ -147,18 +148,17 @@ def edit(topic, mchoice):
         if question == "" or answer == "":
             return render_template("error.html",message="Osa kentistä jätettiin tyhjiksi.", url="/course/"+topic)
         options = request.form["options"]
-        print(options)
         if options != "None":
             optionlist = options.split(",")
             if len(optionlist) > 1:
                 for option in optionlist:
                     if option == answer:
-                        performance.newmax(course_id)
+                        courses.newmax(course_id)
                         exercises.add(course_id, question, answer, options)
                         return redirect("/course/"+topic+"/exercise/edit/"+mchoice)
             return render_template("error.html",message="Virheelliset syötteet.", url="/course/"+topic)
         else:
-            performance.newmax(course_id)
+            courses.newmax(course_id)
             exercises.add(course_id, question, answer, options)
             return redirect("/course/"+topic+"/exercise/edit/"+mchoice)
 

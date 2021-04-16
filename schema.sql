@@ -11,6 +11,7 @@ CREATE TABLE courses (
     topic TEXT UNIQUE,
     content TEXT,
     owner_id INTEGER REFERENCES users,
+    maximum INTEGER,
     modified TIMESTAMP,
     visible INTEGER
 );
@@ -27,6 +28,5 @@ CREATE TABLE performance (
     course_id INTEGER REFERENCES courses,
     student_id INTEGER REFERENCES users,
     points INTEGER,
-    maximum INTEGER,
     visible INTEGER
 );

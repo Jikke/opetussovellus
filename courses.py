@@ -31,12 +31,12 @@ def create(topic, content):
         exists = result.fetchone()
         if exists == None:
             # Topic has never been in use
-            sql = "INSERT INTO courses (topic, content, owner_id, modified, visible) VALUES (:topic, :content, :owner_id, NOW(), 1)"
+            sql = "INSERT INTO courses (topic, content, owner_id, maximum, modified, visible) VALUES (:topic, :content, :owner_id, 0, NOW(), 1)"
             db.session.execute(sql, {"topic":topic, "content":content, "owner_id":owner_id})
             db.session.commit()
         else:
             # Topic has been deleted, will retake it
-            sql = "UPDATE courses SET content=:content, owner_id=:owner_id, modified=NOW(), visible=1 WHERE topic=:topic AND visible=0"
+            sql = "UPDATE courses SET content=:content, owner_id=:owner_id, maximum=0, modified=NOW(), visible=1 WHERE topic=:topic AND visible=0"
             db.session.execute(sql, {"topic":topic, "content":content, "owner_id":owner_id})
             db.session.commit()
         return True
@@ -44,16 +44,29 @@ def create(topic, content):
         # Topic is in use
         return False
 
-def modify(course_id, topic, content):
+def modify(id, topic, content):
     owner_id = users.user_id()
     if owner_id == 0:
         return False
     else:
-        sql = "UPDATE courses SET topic=:topic, content=:content, owner_id=:owner_id, modified=NOW() WHERE id=:course_id"
-        db.session.execute(sql, {"topic":topic, "content":content, "owner_id":owner_id, "course_id":course_id})
+        sql = "UPDATE courses SET topic=:topic, content=:content, owner_id=:owner_id, modified=NOW() WHERE id=:id"
+        db.session.execute(sql, {"topic":topic, "content":content, "owner_id":owner_id, "id":id})
         db.session.commit()
         return True        
     
+
+def getmax(id):
+    sql = "SELECT maximum FROM courses WHERE id=:id AND visible=1"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()
+
+
+def newmax(id):
+    sql = "UPDATE courses SET maximum = maximum + 1 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+
 
 def delete(topic):
     owner_id = users.user_id()

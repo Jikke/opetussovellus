@@ -3,10 +3,10 @@
 {% block content %}
 {% if session.role == 1 or student %}
 <h5>{{ topic }}</h5><br>
-{{ content }}<br>
+{{ course[2] }}<br>
 <br>
     {% if previous != None %}
-    Parhaimmat pisteesi kussilta: {{ previous[3] }} / {{ previous[4] }}<br>
+    Parhaimmat pisteesi kussilta: {{ previous[3] }} / {{ course[4] }}<br>
     {% endif %}
 <a href="/course/{{ topic }}/exercise">Kyselyyn</a><br>
 {% else %}
@@ -25,9 +25,9 @@ Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.<br>
 Otsikko: <br>
 <textarea name="topic" rows="1" cols="30">{{ topic }}</textarea><br>
 Sisältö: <br>
-<textarea name="content" rows="3" cols="40">{{ content }}</textarea><br>
+<textarea name="content" rows="3" cols="40">{{ course[2] }}</textarea><br>
 <input type="hidden" name="topic" value="{{ topic }}" />
-<input type="hidden" name="course_id" value="{{ course_id }}" />
+<input type="hidden" name="course_id" value="{{ course[0] }}" />
 <input type="submit" value="Muokkaa">
 </form>
 <form action="/delete" method="POST">
