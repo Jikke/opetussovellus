@@ -71,7 +71,7 @@ def course(topic):
         previous = performance.get(course_id, student_id)
         return render_template("course.html",topic=topic,course_id=course_id,content=content,student=student,mchoice=0,previous=previous)
     else:
-        return render_template("error.html",message="Kurssia ei löytynyt.", url="/course"+topic)
+        return render_template("error.html",message="Kurssia ei löytynyt.", url="/")
 
 @app.route("/join", methods=["POST"])
 def join():
@@ -82,7 +82,7 @@ def join():
     if performance.join(course[0], student_id, 0, maximum):
         return redirect("/course/"+topic)
     else:
-        return render_template("error.html",message="Kurssille liittyminen ei onnistunut.", url="/course"+topic)
+        return render_template("error.html",message="Kurssille liittyminen ei onnistunut.", url="/")
 
 @app.route("/delete", methods=["POST"])
 def delete():
@@ -90,7 +90,7 @@ def delete():
     if courses.delete(topic):
         return redirect("/")
     else:
-        return render_template("error.html",message="Kurssin postaminen ei onnistunut", url="/course"+topic)
+        return render_template("error.html",message="Kurssin postaminen ei onnistunut", url="/")
 
 @app.route("/modify", methods=["POST"])
 def modify():
@@ -102,7 +102,7 @@ def modify():
     if courses.modify(course_id, topic, content):
         return redirect("/course/"+topic)
     else:
-        return render_template("error.html",message="Kurssin muokkaaminen ei onnistunut", url="/course"+topic)
+        return render_template("error.html",message="Kurssin muokkaaminen ei onnistunut", url="/")
 
 
 @app.route("/course/<topic>/exercise", methods=["GET","POST"])
@@ -145,7 +145,7 @@ def edit(topic, mchoice):
         question = request.form["question"]
         answer = request.form["answer"]
         if question == "" or answer == "":
-            return render_template("error.html",message="Osa kentistä jätettiin tyhjiksi.", url="/course/"+topic+"/exercise/edit/"+mchoice)
+            return render_template("error.html",message="Osa kentistä jätettiin tyhjiksi.", url="/course/"+topic)
         options = request.form["options"]
         print(options)
         if options != None:
@@ -156,7 +156,7 @@ def edit(topic, mchoice):
                         performance.newmax(course_id)
                         exercises.add(course_id, question, answer, options)
                         return redirect("/course/"+topic+"/exercise/edit/"+mchoice)
-            return render_template("error.html",message="Virheelliset syötteet.", url="/course/"+topic+"/exercise/edit/"+mchoice)
+            return render_template("error.html",message="Virheelliset syötteet.", url="/course/"+topic)
         else:
             performance.newmax(course_id)
             exercises.add(course_id, question, answer, options)
