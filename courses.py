@@ -17,6 +17,11 @@ def get_owned():
     result = db.session.execute(sql, {"owner_id":owner_id})
     return result.fetchall()
 
+def get_joined(id):
+    sql = "SELECT topic, maximum FROM courses WHERE id=:id AND visible=1 ORDER BY id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchall()
+
 def create(topic, content):
     owner_id = users.user_id()
     if owner_id == 0:
@@ -61,12 +66,17 @@ def getmax(id):
     return result.fetchone()
 
 
-def newmax(id):
+def maxup(id):
     sql = "UPDATE courses SET maximum = maximum + 1 WHERE id=:id"
     db.session.execute(sql, {"id":id})
     db.session.commit()
     return True
 
+def maxdown(id):
+    sql = "UPDATE courses SET maximum = maximum - 1 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
 
 def delete(topic):
     owner_id = users.user_id()

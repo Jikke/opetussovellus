@@ -1,11 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Kurssi - {{ topic }}{% endblock %}
 {% block content %}
+<h2>Kurssi - {{ topic }}</h2>
+<hr>
 {% if session.role == 1 or student %}
+   {% if points != None %} 
+    <div class="alert alert-info alert-dismissable fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    Sait kyselystä {{ points }} pistettä!
+    </div>
+    {% endif %}
 <h5>{{ topic }}</h5><br>
 {{ course[2] }}<br>
-<br>
-    {% if previous != None %}
+<br> 
+    {% if student %}
     Parhaimmat pisteesi kussilta: {{ previous[3] }} / {{ course[4] }}<br>
     {% endif %}
 <a href="/course/{{ topic }}/exercise">Kyselyyn</a><br>
@@ -13,13 +23,19 @@
 Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.<br>
 {% endif %}    
 {% if session.role == 2 and student == False %}   
-<form action="/join" method="POST">
-<input type="hidden" value="{{ topic }}" name="topic" />
-<input type="submit" value="Liity kurssille">
-</form><br>
+    <form action="/join" method="POST">
+    <input type="hidden" value="{{ topic }}" name="topic" />
+    <input type="submit" value="Liity kurssille">
+    </form><br>
+    {% elif student == True %}
+    <form action="/leave" method="POST">
+    <input type="hidden" value="{{ topic }}" name="topic" />
+    <input type="submit" value="Poistu kurssilta">
+    </form><br>
 {% endif %}
 {% if session.role == 1 %}
-<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}">Lisää kysymys</a><br> 
+<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}">Lisää kysymys</a><br>
+<a href="/course/{{ topic }}/ratings">Suoritukset</a><br> 
 <form action="/modify" method="POST">    
 <i>Muokkaa kurssia:</i><br>
 Otsikko: <br>

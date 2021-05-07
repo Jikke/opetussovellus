@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block title %}Kysely - {{ topic }}{% endblock %}
 {% block content %}
+<h2>Kysely - {{ topic }}</h2>
+<hr>
 {% if session.role == 2 %}
     {% if count > 0 %}
         <form action="/course/{{ topic }}/exercise" method="POST">
@@ -10,10 +12,14 @@
             {% if exercise[4] != "None" %}
                 {% set options = exercise[4].split(",") %}
                 {% for option in options %}
-                <input type="radio" name="{{ exercise[0] }}" value="{{ option }}"> {{ option }}<br>
+                    {% if loop.index == 1 %}
+                    <input type="radio" name="{{ exercise[0] }}" value="{{ option }}" checked> {{ option }}<br>
+                    {% else %}
+                    <input type="radio" name="{{ exercise[0] }}" value="{{ option }}"> {{ option }}<br>
+                    {% endif %}
                 {% endfor %}
             {% else %}
-            Vastaus: <input type="text" name="{{ exercise[0] }}"><br>
+            Vastaus: <input type="text" name="{{ exercise[0] }}" placeholder="Max. 20 merkkiä" maxlength="20"><br>
             {% endif %}
         <br>    
         {% endfor %}
@@ -23,7 +29,7 @@
     Kurssille ei ole luotu kysymyksiä.
     {% endif %}     
 {% elif session.role == 1 %}
-<u>Luomasi kysymykset ja niiden mahdolliset vastausvaihtoehdot listattuna:</u><br><br>
+<u>Luomasi kysymykset ja niiden vastaukset:</u><br><br>
 {% for exercise in exercises %}
     {{ exercise[2] }}<br>
         {% if exercise[4] != "None" %}
@@ -35,12 +41,19 @@
                 {% else %}
                 <li>{{ option }}</li>
                 {% endif %}
+                
             {% endfor %}
         </ul>    
         {% else %}
         Oikea vastaus: {{ exercise[3] }}
         <br>
         {% endif %}
+        <br>
+    <form action="/remove" method="POST">
+        <input type="hidden" value="{{ exercise[0] }}" name="exercise_id" />
+        <input type="hidden" value="{{ topic }}" name="topic" />
+        <input type="submit" value="Poista">
+    </form><br>
     {% endfor %}
 {% endif %}
 <a href="/course/{{ topic }}">Palaa</a><br>

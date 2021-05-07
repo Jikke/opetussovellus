@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 {% block title %}Rekistöröityminen{% endblock %}
 {% block content %}
+<h2>Rekistöröityminen</h2>
+<hr>
 <form action="/register" method="POST">
-<h5>Rekistöröidy:</h5>
 <div class="form-group col-6">
     <label for="username">Tunnus</label>
     <input type="text" name="username" class="form-control">

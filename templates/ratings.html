@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Suoritukset - {{ topic }}{% endblock %}
+{% block content %}
+<h2>Suoritukset - {{ topic }}</h2>
+<hr>
+{% if session.user_id %}
+    {% if session.role == 1 %}
+        {% if perf_list|length > 0 %}
+            {% for student in stdn_list %}
+                {% set performance = perf_list[loop.index-1] %}
+                <i>Opiskelija:</i> {{ student }}, pisteet {{ performance[3] }}/{{ max }}
+                <br>
+            {% endfor %}
+        {% else %}
+        Kurssille ei ole ilmoittautunut opiskelijoita.
+        {% endif %}
+    {% elif session.role == 2 %}
+        Sinulla ei ole oikeutta nähdä tätä sivua.
+    {% endif %}
+        
+{% else %}
+Täällä ei ole mitään nähtävää.
+{% endif %}
+<a href="/course/{{ topic }}">Palaa</a><br>
+{% endblock %}

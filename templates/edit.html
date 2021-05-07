@@ -1,26 +1,28 @@
 {% extends "layout.html" %}
-{% block title %}Muokkaa - {{ topic }}{% endblock %}
+{% block title %}Lisää kysymys - {{ topic }}{% endblock %}
 {% block content %}
+<h2>Lisää kysymys - {{ topic }}</h2>
+<hr>
 {% if session.role == 1 %}
 
         {% if mchoice == "1" or mchoice == "0" %}
         <form action="/course/{{ topic }}/exercise/edit/{{ mchoice }}" method="POST">  
         <p> 
         Kysymys: <br>
-        <textarea name="question" rows="2" cols="40"></textarea>
+        <textarea name="question" rows="1" cols="50" placeholder="Max. 50 merkkiä" maxlength="50"></textarea>
         <br>
             {% if mchoice == "1" %}    
             Vastaustyyppi: Monivalinta<br>
             Syötä vastausvaihtoehdot putkeen pilkulla (,) erotettuna.<br>
-            <textarea name="options" rows="2" cols="40"></textarea><br>
+            <textarea name="options" rows="1" cols="60" placeholder="Max. 60 merkkiä" maxlength="60"></textarea><br>
             Syötä oikea vastaus: <br>
-            <textarea name="answer" rows="1" cols="40"></textarea><br>
+            <textarea name="answer" rows="1" cols="20" placeholder="Max. 20 merkkiä" maxlength="20"></textarea><br>
             Vaihda tehtävätyyppi:
             <a href="/course/{{ topic }}/exercise/edit/0">Aukontäyttö</a><br>
             {% else %}
             Vastaustyyppi: Aukontäyttö<br>
             Syötä oikea vastaus: <br>
-            <textarea name="answer" rows="1" cols="40"></textarea><br>
+            <textarea name="answer" rows="1" cols="20" placeholder="Max. 20 merkkiä" maxlength="20"></textarea><br>
             <input type="hidden" name="options" value="None" />
             Vaihda tehtävätyyppi:
             <a href="/course/{{ topic }}/exercise/edit/1">Monivalinta</a><br>  

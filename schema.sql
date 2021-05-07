@@ -1,4 +1,3 @@
-
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
@@ -28,5 +27,6 @@ CREATE TABLE performance (
     course_id INTEGER REFERENCES courses,
     student_id INTEGER REFERENCES users,
     points INTEGER,
+    submission TEXT,
     visible INTEGER
 );
