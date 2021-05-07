@@ -12,13 +12,13 @@ Tällä hetkellä toteutuvat toiminnot on merkitty rivin loppuun täpällä.
   - luomaan/muokkaamaan/poistamaan kursseja :heavy_check_mark:
   - lisäämään kurssille tekstisisältöä :heavy_check_mark:
   - lisäämään automaattisesti tarkastettavia monivalinta- ja tekstikenttätehtäviä :heavy_check_mark:
-  - tarkastelemaan kurssille ilmoittautuneita oppilaita ja heidän kurssimenestystään
+  - tarkastelemaan kurssille ilmoittautuneita oppilaita ja heidän kurssimenestystään :heavy_check_mark:
 
 ### Oppilas pystyy
-  - liittymään kurssille :heavy_check_mark:
+  - kurssille liittyminen/poistuminen :heavy_check_mark:
   - lukemaan kurssille lisättyä tekstisisältöä :heavy_check_mark:
   - suorittamaan kurssilta löytyviä opettajan lisäämiä tehtäviä :heavy_check_mark:
-  - tarkastelemaan omia kurssisuorituksia
+  - tarkastelemaan omia kurssisuorituksia :heavy_check_mark:
 
 ## Jatkokehitysideoita
 Käytettävissä olevan ajan puitteissa sivulle tullaan lisäämään mahdollisesti joitain seuraavista
