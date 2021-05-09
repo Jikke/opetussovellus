@@ -18,23 +18,23 @@
             Syötä oikea vastaus: <br>
             <textarea name="answer" rows="1" cols="20" placeholder="Max. 20 merkkiä" maxlength="20"></textarea><br>
             Vaihda tehtävätyyppi:
-            <a href="/course/{{ topic }}/exercise/edit/0">Aukontäyttö</a><br>
+            <a href="/course/{{ topic }}/exercise/edit/0" class="btn btn-info">Aukontäyttö</a><br>
             {% else %}
             Vastaustyyppi: Aukontäyttö<br>
             Syötä oikea vastaus: <br>
             <textarea name="answer" rows="1" cols="20" placeholder="Max. 20 merkkiä" maxlength="20"></textarea><br>
             <input type="hidden" name="options" value="None" />
             Vaihda tehtävätyyppi:
-            <a href="/course/{{ topic }}/exercise/edit/1">Monivalinta</a><br>  
+            <a href="/course/{{ topic }}/exercise/edit/1" class="btn btn-info">Monivalinta</a><br>  
             {% endif %}
-        <input type="submit" value="Lisää">  
+        <input type="submit" class="btn btn-success" value="Lisää">  
         </form>
         {% else %}
-        <a href="/course/{{ topic }}/exercise/edit/0">Luo uusi kysymys</a>
+        <a href="/course/{{ topic }}/exercise/edit/0" class="btn btn-primary">Luo uusi kysymys</a>
         {% endif %}
 
 {% else %}
 Tililläsi ei ole oikeutta nähdä tätä sivua.    
 {% endif %}
-<a href="/course/{{ topic }}">Palaa</a><br>
+<a href="/course/{{ topic }} " class="btn btn-info">Palaa</a><br>
 {% endblock %}

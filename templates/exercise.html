@@ -7,7 +7,6 @@
     {% if count > 0 %}
         <form action="/course/{{ topic }}/exercise" method="POST">
         {% for exercise in exercises %}
-        
         {{ exercise[2] }}<br>
             {% if exercise[4] != "None" %}
                 {% set options = exercise[4].split(",") %}
@@ -23,10 +22,11 @@
             {% endif %}
         <br>    
         {% endfor %}
-        <input type="submit" value="Palauta">
+        <input type="submit" value="Palauta" class="btn btn-primary">
         </form>
     {% else %}
     Kurssille ei ole luotu kysymyksiä.
+    <br>
     {% endif %}     
 {% elif session.role == 1 %}
 <u>Luomasi kysymykset ja niiden vastaukset:</u><br><br>
@@ -52,9 +52,10 @@
     <form action="/remove" method="POST">
         <input type="hidden" value="{{ exercise[0] }}" name="exercise_id" />
         <input type="hidden" value="{{ topic }}" name="topic" />
-        <input type="submit" value="Poista">
+        <input type="submit" class="btn btn-warning" value="Poista">
     </form><br>
     {% endfor %}
 {% endif %}
-<a href="/course/{{ topic }}">Palaa</a><br>
+<br>
+<a href="/course/{{ topic }}" class="btn btn-info">Palaa</a><br>
 {% endblock %}

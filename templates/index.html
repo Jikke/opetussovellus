@@ -5,7 +5,7 @@
 <hr>
 {% if session.user_id %}
     {% if session.role == 1 %}
-    <a href="/new">Luo kurssi</a><br>
+    <a href="/new" class="btn btn-success">Luo kurssi</a><br>
         {% if count > 0 %}
         Luomasi kurssit:<br>
         {% else %}
@@ -13,7 +13,7 @@
         {% endif %}
     {% elif session.role == 2 %}
         {% if count > 0 %}
-        <a href="/check">Kurssini</a><br>
+        <a href="/check" class="btn btn-primary">Kurssini</a><br>
         Saatavilla olevat kurssit:
         {% else %}
         Kursseja ei ole saatavilla.
@@ -21,8 +21,8 @@
     {% endif %}
         {% for course in courses %}
         <br>
-        <i>Kurssi:</i> <a href="/course/{{ course[0] }}">{{ course[0] }}</a><br>
-        <i>Muokattu:</i> {{ course[1].strftime("%d.%m.%Y // %H:%M:%S") }}</p2><br>
+        <a href="/course/{{ course[0] }}" class="btn btn-secondary">{{ course[0] }}</a><br>
+        <i>Muokattu:</i> {{ course[1].strftime("%d.%m.%Y // %H:%M:%S") }}<br>
         {% endfor %}
 {% else %}
 <h3>Tervetuloa!</h3>

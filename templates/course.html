@@ -3,6 +3,7 @@
 {% block content %}
 <h2>Kurssi - {{ topic }}</h2>
 <hr>
+<div class="container">
 {% if session.role == 1 or student %}
    {% if points != None %} 
     <div class="alert alert-info alert-dismissable fade show" role="alert">
@@ -16,39 +17,45 @@
 {{ course[2] }}<br>
 <br> 
     {% if student %}
-    Parhaimmat pisteesi kussilta: {{ previous[3] }} / {{ course[4] }}<br>
+    Parhaimmat pisteesi kussilta: {{ previous[3] }} / {{ course[4] }}
+    <br>
     {% endif %}
-<a href="/course/{{ topic }}/exercise">Kyselyyn</a><br>
+<br>
+<a href="/course/{{ topic }}/exercise" class="btn btn-info">Kyselyyn</a><br>
+<br>
 {% else %}
 Sinulla ei ole oikeutta nähdä tämän kurssin sisältöä.<br>
 {% endif %}    
 {% if session.role == 2 and student == False %}   
     <form action="/join" method="POST">
     <input type="hidden" value="{{ topic }}" name="topic" />
-    <input type="submit" value="Liity kurssille">
+    <input type="submit" class="btn btn-primary" value="Liity kurssille">
     </form><br>
     {% elif student == True %}
+    <br>
     <form action="/leave" method="POST">
     <input type="hidden" value="{{ topic }}" name="topic" />
-    <input type="submit" value="Poistu kurssilta">
-    </form><br>
+    <input type="submit" class="btn btn-danger" value="Keskeytä kurssi">
+    </form>
 {% endif %}
 {% if session.role == 1 %}
-<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}">Lisää kysymys</a><br>
-<a href="/course/{{ topic }}/ratings">Suoritukset</a><br> 
-<form action="/modify" method="POST">    
-<i>Muokkaa kurssia:</i><br>
+<a href="/course/{{ topic }}/ratings" class="btn btn-info">Suoritukset</a><br> 
+<br>
+<a href="/course/{{ topic }}/exercise/edit/{{ mchoice }}" class="btn btn-success">Lisää kysymys</a><br>
+<br>
+<form action="/modify" method="POST">
 Otsikko: <br>
 <textarea name="topic" rows="1" cols="30">{{ topic }}</textarea><br>
 Sisältö: <br>
 <textarea name="content" rows="3" cols="40">{{ course[2] }}</textarea><br>
 <input type="hidden" name="topic" value="{{ topic }}" />
 <input type="hidden" name="course_id" value="{{ course[0] }}" />
-<input type="submit" value="Muokkaa">
+<input type="submit" class="btn btn-primary" value="Muokkaa">
 </form>
 <form action="/delete" method="POST">
 <input type="hidden" value="{{ topic }}" name="topic" />
-<input type="submit" value="Poista">
+<input type="submit" class="btn btn-danger" value="Poista">
 </form><br>
+</div>
 {% endif %}
 {% endblock %}

@@ -7,12 +7,12 @@
     {% for course in course_list %}
         {% set performance = perf_list[loop.index-1] %}
         <br>
-        Kurssi: <a href="/course/{{ course[0][0] }}">{{ course[0][0] }}</a><br>
+        <a href="/course/{{ course[0][0] }}" class="btn btn-secondary">{{ course[0][0] }}</a><br>
         Pisteesi: {{ performance[3] }}/{{ course[0][1] }}<br>
     {% endfor %}
 {% else %}
 Et ole liittynyt vielä kursseille.
 {% endif %}
 <br>
-<a href="/">Palaa</a>
+<a href="/" class="btn btn-info">Palaa</a>
 {% endblock %}
