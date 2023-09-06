@@ -33,7 +33,7 @@ Final state of the website: [tsoha-opetussovellus](https://tsoha-opetussovellus.
 
 ## User roles
 
-User may create an account and log in as either _teacher_ or _student_ access rights. \
+User may create an account and log in with either _teacher_ or _student_ access rights. \
 Created features are as follows.
 
 ### Teacher can
