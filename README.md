@@ -1,5 +1,5 @@
 # Opetussovellus
-(In English below)
+(In English below) \
 Tietokantasovellus-kurssin projekti. \
 Tavoitteena oli luoda nettisivu, johon voi luoda opetussisältöä tehtävineen. Näitä kursseja muut käyttäjät voivat lukea ja suorittaa. \
 Nettisivun lopullinen tilanne: [tsoha-opetussovellus](https://tsoha-opetussovellus.herokuapp.com/)
